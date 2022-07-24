@@ -10,7 +10,7 @@ class Finism:
     
     def __init__(self) -> None:
         self.symbols = toml.load(
-            'symbols.toml'
+            'backend/symbols.toml'
         )
 
     def stock_history(self):
@@ -25,7 +25,6 @@ class Finism:
         self.symbols = queue
 
         for ticker in self.symbols['stock'].keys():
-            print(ticker)
             name, symbol = ticker
             stockism = Stockism(symbol)
             
@@ -49,14 +48,13 @@ class Finism:
             self.symbols['stock'][ticker] = data
             return data
 
-    def crypto_live(self):
+    def crypto_ticker(self):
         for ticker in self.symbols['crypto'].keys():
             if key.PRICE not in ticker:
                 self.symbols['crypto'][ticker]['price'] = {}
 
         for ticker in self.symbols['crypto'].keys():
             name, symbol = ticker
-            print(ticker)
             cryptism = Cryptism()
             listing = cryptism.listing(
                 symbol
@@ -96,3 +94,24 @@ class Finism:
             ta.rsi()
 
             return ta.export()
+    
+    def fear_and_gread(self) -> None:
+        cryptism = Cryptism()
+        fng = cryptism.fear_and_greed(
+            limit = 0,
+            keys = [
+                key.VALUE,
+                key.CLASSIFICATION,
+                key.TIMESTAMP
+            ]
+        )
+
+        data = {}
+        for value, classification, timestamp in zip(*fng.values()):
+            data.update({
+                pd.Timestamp(
+                    timestamp
+                ): (value, classification)
+            })
+
+        return pd.DataFrame(data).to_json()
