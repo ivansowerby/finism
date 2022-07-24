@@ -1,7 +1,7 @@
-import src.cryptism.loader as loader
-import src.cryptism.finder as finder
-from src.cryptism.api import *
-from src.cryptism.call import *
+import backend.src.cryptism.loader as loader
+import backend.src.cryptism.finder as finder
+from backend.src.cryptism.api import *
+from backend.src.cryptism.call import *
 
 class Cryptism:
     def __init__(self) -> None:

@@ -1,4 +1,4 @@
-import src.cryptism.loader as loader
+import backend.src.cryptism.loader as loader
 from requests import get
 
 def fetch(url: str) -> dict:

@@ -1,6 +1,6 @@
 from toml import load
 
-ROOT_PATH = 'src/cryptism'
+ROOT_PATH = 'backend/src/cryptism'
 
 def toml(local_path: str) -> dict:
     filepath = '/'.join((

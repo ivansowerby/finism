@@ -1,9 +1,9 @@
 import toml
 import pandas as pd
-from src.cryptism import *
-from src.cryptism import key
-from src.stockism import *
-from src.technical_analysis import *
+from backend.src.cryptism import *
+from backend.src.cryptism import key
+from backend.src.stockism import *
+from backend.src.technical_analysis import *
 
 class Finism:
     FIAT = 'USD'
@@ -22,9 +22,9 @@ class Finism:
                 queue[classification].update({
                     (name, symbol): {}
                 })
-        symbols = queue
+        self.symbols = queue
 
-        for ticker in symbols['stock'].keys():
+        for ticker in self.symbols['stock'].keys():
             print(ticker)
             name, symbol = ticker
             stockism = Stockism(symbol)
@@ -45,15 +45,14 @@ class Finism:
             ta.macd()
             ta.rsi()
 
-            self.symbols['stock'][ticker] = ta.export()
+            data = ta.export()
+            self.symbols['stock'][ticker] = data
+            return data
 
     def crypto_live(self):
-        cell = self.symbols['crypto'][ticker]
-        for ticker in cell.keys():
+        for ticker in self.symbols['crypto'].keys():
             if key.PRICE not in ticker:
-                cell['price'] = {}
-        self.symbols['crypto'][ticker] = cell
-
+                self.symbols['crypto'][ticker]['price'] = {}
 
         for ticker in self.symbols['crypto'].keys():
             name, symbol = ticker

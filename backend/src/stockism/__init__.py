@@ -1,11 +1,11 @@
 from math import inf
-import src.stockism.period as period
-import src.stockism.interval as interval
-import src.stockism.history as history
+import backend.src.stockism.period as period
+import backend.src.stockism.interval as interval
+import backend.src.stockism.history as history
 import yfinance as yf
 import pandas as pd
 import datetime as dt
-from src.stockism.date import *
+from backend.src.stockism.date import *
 
 class Stockism:
     def __init__(self, symbol: str) -> None:

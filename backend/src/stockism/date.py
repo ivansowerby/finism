@@ -1,6 +1,6 @@
 from datetime import timedelta
 import pandas as pd
-import src.stockism.loader as loader
+import backend.src.stockism.loader as loader
 
 def date(year: int, month: int= 1, day: int = 1, \
          hour: int = 0, minute: int = 0, second: int = 0) -> str:
