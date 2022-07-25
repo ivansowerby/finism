@@ -1,0 +1,14 @@
+"[]" = [
+    "name"
+]
+
+"data" = [
+    "value",
+    "value_classification",
+    "timestamp",
+    "time_until_update"
+]
+
+"metadata" = [
+    "error"
+]
